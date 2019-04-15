@@ -1,21 +1,16 @@
 from flask import Flask, render_template, request, redirect, url_for
 from sqlalchemy import create_engine
-from sqlalchemy import MetaData, Table
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import Session
+from sqlalchemy.ext.automap import automap_base
 
 app = Flask(__name__)
 
+Base = automap_base()
 engine = create_engine('postgresql:///catalog')
-metadata = MetaData()
-
-Genres = Table('genres', metadata, autoload=True, autoload_with=engine)
-Movies = Table('movies', metadata, autoload=True, autoload_with=engine)
-
-DBSession = sessionmaker(bind=engine)
-Base = declarative_base()
-Session = sessionmaker(engine)
-session = Session()
+Base.prepare(engine, reflect=True)
+Genres = Base.classes.genres
+Movies = Base.classes.movies
+session = Session(engine)
 
 @app.route('/')
 @app.route('/genres/<int:genre_id>/')
