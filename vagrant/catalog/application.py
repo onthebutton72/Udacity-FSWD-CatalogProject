@@ -17,7 +17,6 @@ session = Session()
 
 app = Flask(__name__)
 
-
 @app.route('/')
 @app.route('/genres/<int:genre_id>/')
 def genreMenu(genre_id):
@@ -28,6 +27,24 @@ def genreMenu(genre_id):
 		output += i.title
 		output += '</br>'
 	return output
+
+
+#Create a route for newMovieItem function
+@app.route('/genres/<int:genre_id>/new/')
+def newMovieItem(genre_id):
+	return "page to create a new movie item.  Task 1 complete!"
+
+
+#Create a route for editMovieItem function
+@app.route('/genres/<int:genre_id>/<int:movie_id>/edit/')
+def editMovieItem(genre_id, movie_id):
+	return "page to edit a new movie item.  Task 2 complete!"
+
+
+@app.route('/genres/<int:genre_id>/<int:movie_id>/delete/')
+def deleteMovieItem(genre_id, movie_id):
+	return "page to delete a new movie item.  Task 3 complete!"
+
 
 if __name__ == '__main__':
 	app.debug = True
