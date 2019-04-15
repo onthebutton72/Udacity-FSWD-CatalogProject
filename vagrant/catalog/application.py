@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from sqlalchemy import create_engine
 from sqlalchemy import MetaData, Table
 from sqlalchemy.orm import sessionmaker
@@ -22,11 +22,7 @@ app = Flask(__name__)
 def genreMenu(genre_id):
 	genres = session.query(Genres).filter_by(id=genre_id).one()
 	movies = session.query(Movies).filter_by(genre_id = genre_id)
-	output = ''
-	for i in movies:
-		output += i.title
-		output += '</br>'
-	return output
+	return render_template('menu.html', genres=genres, movies=movies)
 
 
 #Create a route for newMovieItem function
@@ -40,7 +36,7 @@ def newMovieItem(genre_id):
 def editMovieItem(genre_id, movie_id):
 	return "page to edit a new movie item.  Task 2 complete!"
 
-
+#Create a route for deleteMovieItem function
 @app.route('/genres/<int:genre_id>/<int:movie_id>/delete/')
 def deleteMovieItem(genre_id, movie_id):
 	return "page to delete a new movie item.  Task 3 complete!"

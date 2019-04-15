@@ -1,0 +1,20 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Movie Catalog</title>
+		<meta name="description" content="FEWD Movie Catalog">
+		<meta name="author" content="Jamie Martinez">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+
+	<body>
+		<h1>{{ genres.name }}</h1>
+		{% for i in movies %}
+		{{ i.title }}
+		</br>
+		{% endfor %}
+	</body>
+</html>
