@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
@@ -27,6 +27,7 @@ def newMovieItem(genre_id):
 		newMovie = Movies(title = request.form['name'], genre_id = genre_id)
 		session.add(newMovie)
 		session.commit()
+		flash("new movie created!")
 		return redirect(url_for('genreMenu', genre_id = genre_id))
 	else:
 		return render_template('newmovieitem.html', genre_id = genre_id)
@@ -41,6 +42,7 @@ def editMovieItem(genre_id, movie_id):
 			editedItem.title = request.form['name']
 		session.add(editedItem)
 		session.commit()
+		flash("movie has been edited!")
 		return redirect(url_for('genreMenu', genre_id = genre_id))
 	else:
 		return render_template('editmovieitem.html', genre_id = genre_id
@@ -54,11 +56,13 @@ def deleteMovieItem(genre_id, movie_id):
 	if request.method == 'POST':
 		session.delete(itemToDelete)
 		session.commit()
+		flash("movie has been deleted!")
 		return redirect(url_for('genreMenu', genre_id = genre_id))
 	else:
 		return render_template('deletemovieitem.html', i = itemToDelete)
 
 
 if __name__ == '__main__':
+	app.secret_key = 'mykey'
 	app.debug = True
 	app.run(host = '0.0.0.0', port = 5000)

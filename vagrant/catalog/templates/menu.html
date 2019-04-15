@@ -12,6 +12,16 @@
 
 	<body>
 		<h1>{{ genres.name }}</h1>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<ul>
+					{% for message in messages %}
+						<li><strong>{{ message }}</strong></li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+		
 		<a href = '{{url_for('newMovieItem', genre_id= genres.id) }}'>Create New Movie</a>
 		</br>
 		</br>
