@@ -19,10 +19,10 @@ app = Flask(__name__)
 
 
 @app.route('/')
-@app.route('/movies')
-def getData():
-	genres = session.query(Genres)[1]
-	movies = session.query(Movies).filter_by(genre_id = genres.id)
+@app.route('/genres/<int:genre_id>/')
+def getGenres(genre_id):
+	genres = session.query(Genres).filter_by(id=genre_id).one()
+	movies = session.query(Movies).filter_by(genre_id = genre_id)
 	output = ''
 	for i in movies:
 		output += i.title
