@@ -1,8 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from sqlalchemy import create_engine
 from sqlalchemy import MetaData, Table
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+
+app = Flask(__name__)
 
 engine = create_engine('postgresql:///catalog')
 metadata = MetaData()
@@ -15,8 +17,6 @@ Base = declarative_base()
 Session = sessionmaker(engine)
 session = Session()
 
-app = Flask(__name__)
-
 @app.route('/')
 @app.route('/genres/<int:genre_id>/')
 def genreMenu(genre_id):
@@ -26,9 +26,15 @@ def genreMenu(genre_id):
 
 
 #Create a route for newMovieItem function
-@app.route('/genres/<int:genre_id>/new/')
+@app.route('/genres/<int:genre_id>/new/', methods=['GET', 'POST'])
 def newMovieItem(genre_id):
-	return "page to create a new movie item.  Task 1 complete!"
+	if request.method == 'POST':
+		newMovie = Movies(title = request.form['name'], genre_id = genre_id)
+		session.add(newMovie)
+		session.commit()
+		return redirect(url_for('genreMenu', genre_id = genre_id))
+	else:
+		return render_template('newmovieitem.html', genre_id = genre_id)
 
 
 #Create a route for editMovieItem function

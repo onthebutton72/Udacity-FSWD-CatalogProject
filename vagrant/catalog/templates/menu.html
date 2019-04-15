@@ -12,8 +12,16 @@
 
 	<body>
 		<h1>{{ genres.name }}</h1>
+		<a href = '{{url_for('newMovieItem', genre_id= genres.id) }}'>Create New Movie</a>
+		</br>
+		</br>
 		{% for i in movies %}
 		{{ i.title }}
+		</br>
+		<a href='{{url_for('editMovieItem', genre_id=genres.id, movie_id=i.id) }}' >Edit</a>
+		</br>
+		<a href='{{url_for('deleteMovieItem', genre_id=genres.id, movie_id=i.id) }}' >Delete</a>
+		</br>
 		</br>
 		{% endfor %}
 	</body>
