@@ -53,8 +53,8 @@ session.commit()
 # Create Movies Table
 the_shining = Movies(title='The Shining', description='A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his pyschic son sees horrific forebodings from both past and future.', genre_id=2)
 the_hunt_for_red_october = Movies(title='The Hunt for Red October', description='In November 1984 the Soviet Unions best submarine captain violates orders and heads for the US either trying to defect or start a war.', genre_id=3)
-the_notebook = Movies(title='The Notebook', description='A poor yet passionate young man falls in love with a rich young woman, giving her a sense of freedom, but they are soon separated because of their social differences.', genre_id=1)
-the_other_guys = Movies(title='The Other Guys', description='Two mismatched New York City detectives seize an opportunity to step up like the top cops, whom they idolize, only things do not quite go as planned.', genre_id=5)
+the_notebook = Movies(title='The Notebook', description='A poor yet passionate young man falls in love with a rich young woman, giving her a sense of freedom, but they are soon separated because of their social differences.', genre_id=5)
+the_other_guys = Movies(title='The Other Guys', description='Two mismatched New York City detectives seize an opportunity to step up like the top cops, whom they idolize, only things do not quite go as planned.', genre_id=1)
 first_man = Movies(title='First Man', description='A look at the life of the astronaut, Neil Armstrong, and the legendary space mission that led him to become the first man to walk on the Moon on July 20, 1969.', genre_id=4)
 avengers_inifity_war = Movies(title='Avengers Infinity War', description='The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.', genre_id=3)
 

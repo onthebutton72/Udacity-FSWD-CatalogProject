@@ -33,9 +33,19 @@ def newMovieItem(genre_id):
 
 
 #Create a route for editMovieItem function
-@app.route('/genres/<int:genre_id>/<int:movie_id>/edit/')
+@app.route('/genres/<int:genre_id>/<int:movie_id>/edit/', methods=['GET', 'POST'])
 def editMovieItem(genre_id, movie_id):
-	return "page to edit a new movie item.  Task 2 complete!"
+	editedItem = session.query(Movies).filter_by(id = movie_id).one()
+	if request.method == 'POST':
+		if request.form['name']:
+			editedItem.title = request.form['name']
+		session.add(editedItem)
+		session.commit()
+		return redirect(url_for('genreMenu', genre_id = genre_id))
+	else:
+		return render_template('editmovieitem.html', genre_id = genre_id
+			, movie_id = movie_id, i = editedItem)
+
 
 #Create a route for deleteMovieItem function
 @app.route('/genres/<int:genre_id>/<int:movie_id>/delete/')

@@ -1,0 +1,23 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>New Movie</title>
+		<meta name="description" content="FEWD Movie Catalog">
+		<meta name="author" content="Jamie Martinez">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+
+	<body>
+		<h1>Edit Movie</h1>
+		<form action="{{ url_for('editMovieItem', genre_id=genre_id, movie_id=i.id )}}" method = 'POST'>
+
+		<p>Title:</p>
+		<input type = 'text' size='30' name='name' placeholder= '{{ i.title }}'>
+		<input type = 'submit' value='Edit'>
+		<a href = '{{ url_for('genreMenu', genre_id = i.genre_id) }}'>Cancel</a>
+	</form>
+	</body>
+</html>
