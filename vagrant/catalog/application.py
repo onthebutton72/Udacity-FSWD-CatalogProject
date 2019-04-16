@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
@@ -12,8 +12,15 @@ Genres = Base.classes.genres
 Movies = Base.classes.movies
 session = Session(engine)
 
+@app.route('/genres/<int:genre_id>/menu/JSON')
+def genreMenuJSON(genre_id):
+    genres = session.query(Genres).filter_by(id=genre_id).one()
+    movies = session.query(Movies).filter_by(
+        genre_id=genre_id).all()
+    return jsonify(MovieItems=[i.serialize for i in movies])
+
 @app.route('/')
-@app.route('/genres/<int:genre_id>/')
+@app.route('/genres/<int:genre_id>/menu')
 def genreMenu(genre_id):
 	genres = session.query(Genres).filter_by(id=genre_id).one()
 	movies = session.query(Movies).filter_by(genre_id = genre_id)
