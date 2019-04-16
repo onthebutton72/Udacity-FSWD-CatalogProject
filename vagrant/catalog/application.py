@@ -24,23 +24,24 @@ class MovieSchema(ma.ModelSchema):
 
 @app.route('/')
 
-@app.route('/genres/<int:genre_id>/menu/JSON/')
+@app.route('/catalog/')
+def mainMenu():
+	genres = session.query(Genres)
+	return render_template('catalog.html', genres=genres)
+
+
+#JSON Endpoint
+@app.route('/catalog/<int:genre_id>/JSON/')
 def genreMenuJSON(genre_id):
 	genres = session.query(Genres).filter_by(id=genre_id).one()
 	movies = session.query(Movies).filter_by(genre_id = genre_id).all()
 	genre_schema = GenreSchema()
 	movie_schema = MovieSchema(many=True)
 	output = movie_schema.dump(movies).data
-	return jsonify({'Genre_Output' : output})
+	return jsonify({'JSON_Output' : output})
 
 
-@app.route('/genres/')
-def mainMenu():
-	genres = session.query(Genres)
-	return render_template('genres.html', genres=genres)
-
-
-@app.route('/genres/<int:genre_id>/menu')
+@app.route('/catalog/<int:genre_id>/menu')
 def genreMenu(genre_id):
 	genres = session.query(Genres).filter_by(id=genre_id).one()
 	movies = session.query(Movies).filter_by(genre_id = genre_id)

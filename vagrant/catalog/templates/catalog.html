@@ -11,9 +11,14 @@
 	</head>
 
 	<body>
-		{% for i in genres %}
-		{{ i.name }}
-		</br>
-		{% endfor %}
+		<h1>Movie Catalog</h1>
+		<h2>by Genre</h2>
+		<ul>
+			{% for i in genres %}
+			<li>
+				<a href='{{ url_for('genreMenu',genre_id=i.id) }}' >{{ i.name }}</a>
+			</li>
+			{% endfor %}
+		</ul>
 	</body>
 </html>
