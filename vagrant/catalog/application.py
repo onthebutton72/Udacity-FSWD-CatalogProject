@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
+from flask_marshmallow import Marshmallow #pip install flask-marshmallow, pip install marshmallow-sqlalchemy
 
 app = Flask(__name__)
 
@@ -11,15 +12,34 @@ Base.prepare(engine, reflect=True)
 Genres = Base.classes.genres
 Movies = Base.classes.movies
 session = Session(engine)
+ma = Marshmallow(app)
 
-@app.route('/genres/<int:genre_id>/menu/JSON')
-def genreMenuJSON(genre_id):
-    genres = session.query(Genres).filter_by(id=genre_id).one()
-    movies = session.query(Movies).filter_by(
-        genre_id=genre_id).all()
-    return jsonify(MovieItems=[i.serialize for i in movies])
+class GenreSchema(ma.ModelSchema):
+	class Meta:
+		model = Genres
+
+class MovieSchema(ma.ModelSchema):
+	class Meta:
+		model = Movies
 
 @app.route('/')
+
+@app.route('/genres/<int:genre_id>/menu/JSON/')
+def genreMenuJSON(genre_id):
+	genres = session.query(Genres).filter_by(id=genre_id).one()
+	movies = session.query(Movies).filter_by(genre_id = genre_id).all()
+	genre_schema = GenreSchema()
+	movie_schema = MovieSchema(many=True)
+	output = movie_schema.dump(movies).data
+	return jsonify({'Genre_Output' : output})
+
+
+@app.route('/genres/')
+def mainMenu():
+	genres = session.query(Genres)
+	return render_template('genres.html', genres=genres)
+
+
 @app.route('/genres/<int:genre_id>/menu')
 def genreMenu(genre_id):
 	genres = session.query(Genres).filter_by(id=genre_id).one()

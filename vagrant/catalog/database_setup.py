@@ -19,7 +19,7 @@ class Genres(Base):
     __tablename__ = 'genres'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False)
+    name = Column(String(250), nullable=False)    
 
     
 class Movies(Base):
@@ -31,14 +31,6 @@ class Movies(Base):
     description = Column(String(250))
     genre = relationship('Genres')
 
-    @property
-    def serialize(self):
-        """Return object data in easily serializeable format"""
-        return {
-            'name': self.title,
-            'description': self.description,
-            'id': self.id
-        }
 
 Session = sessionmaker(db)
 session = Session()
