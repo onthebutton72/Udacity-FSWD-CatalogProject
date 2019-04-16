@@ -15,7 +15,10 @@
 		<form action="{{ url_for('newMovieItem', genre_id=genre_id )}}" method = 'POST'>
 
 		<p>Title:</p>
-		<input type = 'text' size='30' name='name'>
+		<input type = 'text' size='30' name='title'>
+
+		<p>Description:</p>
+		<input type = 'text' size='30' name='description'>
 		<input type = 'submit' value='Create'>
 	</form>
 	</body>
