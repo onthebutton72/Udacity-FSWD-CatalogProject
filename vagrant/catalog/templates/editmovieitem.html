@@ -15,8 +15,12 @@
 		<form action="{{ url_for('editMovieItem', genre_id=genre_id, movie_id=i.id )}}" method = 'POST'>
 
 		<p>Title:</p>
-		<input type = 'text' size='30' name='name' placeholder= '{{ i.title }}'>
+		<input type = 'text' size='30' name='title' placeholder= '{{ i.title }}'>
+
+		<p>Description:</p>
+		<input type = 'text' size='100' name='description' placeholder='{{ i.description }}'>
 		<input type = 'submit' value='Edit'>
+
 		<a href = '{{ url_for('genreMenu', genre_id = i.genre_id) }}'>Cancel</a>
 	</form>
 	</body>

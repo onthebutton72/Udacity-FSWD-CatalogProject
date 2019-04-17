@@ -76,8 +76,10 @@ def newMovieItem(genre_id):
 def editMovieItem(genre_id, movie_id):
 	editedItem = session.query(Movies).filter_by(id = movie_id).one()
 	if request.method == 'POST':
-		if request.form['name']:
-			editedItem.title = request.form['name']
+		if request.form['title']:
+			editedItem.title = request.form['title']
+		if request.form['description']:
+			editedItem.description = request.form['description']
 		session.add(editedItem)
 		session.commit()
 		flash("movie has been edited!")
