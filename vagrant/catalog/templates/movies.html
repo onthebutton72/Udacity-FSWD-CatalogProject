@@ -3,7 +3,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Movie Genres</title>
+		<title>Movies</title>
 		<meta name="description" content="FEWD Movie Catalog">
 		<meta name="author" content="Jamie Martinez">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,26 +12,19 @@
 
 	<body>
 		<div class='header'>
-			<h1>Movie Catalog</h1>
+			<h1>Movies</h1>
 		</div>
 		<div class='topnav'>
 			<a href = '{{url_for('mainMenu') }}'>Home</a>
 		</div>
 		<div class='row'>
 			<div class='column left'>
-				<h2>Genre</h2>
+				<h2>{{ genres.name }}</h2>
 				<ul>
-					{% for i in genres %}
-					<li>
-						<a class='genre' href='{{ url_for('genreMenu',genre_id=i.id) }}' >{{ i.name }}</a>
-					</li>
+					{% for i in movies %}
+					{{ i.title }}
+					</br>
 					{% endfor %}
-				</ul>
-			</div>
-			<div class='column right'>
-				<h2>Latest Movies</h2>
-				<ul>
-					<li></li>
 				</ul>
 			</div>
 		</div>

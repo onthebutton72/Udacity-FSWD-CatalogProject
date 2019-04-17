@@ -1,3 +1,105 @@
 h1 {
-	color: green;
+	color: #333;
 }
+
+h2 {
+	font-size: 95%;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0px;
+}
+
+a {
+	font-size: 95%;
+}
+
+/* Style the header */
+.header {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f1f1f1;
+  text-align: center;
+  padding: 14px 2%;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ff4924;
+  color: black;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+/* Left column */
+.column.left {
+	width: 23%;
+	padding-left: 2%;
+	padding-right: 1%;
+
+}
+
+/* Right column */
+.column.right {
+	width: 71%;
+	padding-left: 1%;
+	padding-right: 2%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+a.genre:link    {
+  /* Applies to all unvisited links */
+  text-decoration:  none;
+  color: #ff4924;
+  } 
+a.genre:visited {
+  /* Applies to all visited links */
+  text-decoration:  none;
+  color: #ff4924;
+  } 
+a.genre:hover   {
+  /* Applies to links under the pointer */
+  text-decoration:  none;
+  font-weight:      bold;
+  background-color: #ff4924;
+  color:            black;
+  } 
+a.genre:active  {
+  /* Applies to activated links */
+  text-decoration:  none;
+  font-weight:      bold;
+  background-color: black;
+  color: white;
+  } 
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.left, .column.right {
+    width: 100%;
+  }
