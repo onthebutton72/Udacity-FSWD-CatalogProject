@@ -55,16 +55,15 @@ def allMoviesJSON():
 def movieMenu(genre_id):
 	genres = session.query(Genres).filter_by(id=genre_id).one()
 	movies = session.query(Movies).filter_by(genre_id = genre_id)
-	return render_template('movies.html', genres=genres, movies=movies)
+	return render_template('movies.html', genre_id=genre_id, genres=genres, movies=movies)
 
 
-#Create a route for genreMovie function
-@app.route('/catalog/<int:genre_id>/<int:movie_id>/')
+#Create a route for movieItem function
+@app.route('/catalog/movies/item/<int:genre_id>/<int:movie_id>/')
 def movieItem(genre_id, movie_id):
-	movieItem = session.query(Movies).filter_by(id = movie_id).one()
-	return render_template('item.html', genre_id = genre_id
-	, movie_id = movie_id, i = movieItem)
-
+	genres = session.query(Genres).filter_by(id=genre_id).one()
+	movies = session.query(Movies).filter_by(genre_id = genre_id)
+	return render_template('item.html', genre_id=genre_id, genres=genres, movies=movies)
 
 #Create a route for newMovieItem function
 @app.route('/catalog/<int:genre_id>/new/', methods=['GET', 'POST'])
