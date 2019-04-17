@@ -73,24 +73,24 @@ a {
   clear: both;
 }
 
-a.genre:link    {
+a.genre:link, a.movie:link {
   /* Applies to all unvisited links */
   text-decoration:  none;
   color: #ff4924;
   } 
-a.genre:visited {
+a.genre:visited, a.movie:visited {
   /* Applies to all visited links */
   text-decoration:  none;
   color: #ff4924;
   } 
-a.genre:hover   {
+a.genre:hover, a.movie:hover {
   /* Applies to links under the pointer */
   text-decoration:  none;
   font-weight:      bold;
   background-color: #ff4924;
   color:            black;
   } 
-a.genre:active  {
+a.genre:active, a.movie:active {
   /* Applies to activated links */
   text-decoration:  none;
   font-weight:      bold;
