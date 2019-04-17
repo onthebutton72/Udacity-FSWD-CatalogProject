@@ -30,7 +30,7 @@ def mainMenu():
 	return render_template('catalog.html', genres=genres)
 
 
-#JSON Endpoints
+#Create a route for oneGenreJSON function
 @app.route('/catalog/<int:genre_id>/JSON/')
 def oneGenreJSON(genre_id):
 	genres = session.query(Genres).filter_by(id=genre_id).one()
@@ -50,20 +50,21 @@ def allMoviesJSON():
 	output = movie_schema.dump(movies).data
 	return jsonify({'All_Movies_JSON' : output})
 
-#Create a route for genreMenu function
+
+#Create a route for movieMenu function
 @app.route('/catalog/movies/<int:genre_id>/')
-def genreMenu(genre_id):
+def movieMenu(genre_id):
 	genres = session.query(Genres).filter_by(id=genre_id).one()
 	movies = session.query(Movies).filter_by(genre_id = genre_id)
-	return render_template('movies.html', genres=genres, movies=movies)
+	return render_template('movies.html', genre_id=genre_id, genres=genres, movies=movies)
 
 
-#Create a route for genreMovie function
-@app.route('/catalog/<int:genre_id>/<int:movie_id>/')
-def movieMenu(genre_id, movie_id):
-	movieItem = session.query(Movies).filter_by(id = movie_id).one()
-	return render_template('item.html', genre_id = genre_id
-	, movie_id = movie_id, i = movieItem)
+#Create a route for movieItem function
+@app.route('/catalog/movies/item/<int:genre_id>/<int:movie_id>/')
+def movieItem(genre_id, movie_id):
+	genres = session.query(Genres).filter_by(id=genre_id).one()
+	movies = session.query(Movies).filter_by(genre_id = genre_id)
+	return render_template('item.html', genre_id=genre_id, genres=genres, movies=movies)
 
 
 #Create a route for newMovieItem function

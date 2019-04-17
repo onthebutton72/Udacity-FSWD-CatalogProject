@@ -22,8 +22,7 @@
 				<h2>{{ genres.name }}</h2>
 				<ul>
 					{% for i in movies %}
-					{{ i.title }}
-					</br>
+					<a class='movie' href='{{ url_for('movieItem',genre_id=genre_id, movie_id=i.id) }}' >{{ i.title }}</a>
 					{% endfor %}
 				</ul>
 			</div>
