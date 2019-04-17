@@ -40,7 +40,7 @@ def oneGenreJSON(genre_id):
 	output = movie_schema.dump(movies).data
 	return jsonify({'Genre_JSON' : output})
 
-
+#Create a route for allMoviesJSON function
 @app.route('/catalog/JSON/')
 def allMoviesJSON():
 	genres = session.query(Genres).all()
@@ -51,7 +51,7 @@ def allMoviesJSON():
 	return jsonify({'All_Movies_JSON' : output})
 
 #Create a route for genreMenu function
-@app.route('/catalog/<int:genre_id>/')
+@app.route('/catalog/movies/<int:genre_id>/')
 def genreMenu(genre_id):
 	genres = session.query(Genres).filter_by(id=genre_id).one()
 	movies = session.query(Movies).filter_by(genre_id = genre_id)
