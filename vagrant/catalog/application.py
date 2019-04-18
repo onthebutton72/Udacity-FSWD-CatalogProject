@@ -119,16 +119,16 @@ def gconnect():
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
 
-    # output = ''
-    # output += '<h1>Welcome, '
-    # output += login_session['username']
-    # output += '!</h1>'
-    # output += '<img src="'
-    # output += login_session['picture']
-    # output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
-    # flash("you are now logged in as %s" % login_session['username'])
-    # print "done!"
-    # return output
+    output = ''
+    output += '<h1>Welcome, '
+    output += login_session['username']
+    output += '!</h1>'
+    output += '<img src="'
+    output += login_session['picture']
+    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
+    flash("you are now logged in as %s" % login_session['username'])
+    print "done!"
+    return output
 
 
 #DISCONNECT - Revoke a current user's token and reset their login_session
@@ -199,6 +199,8 @@ def allMoviesJSON():
 #Create a route for movieMenu function
 @app.route('/catalog/movies/<int:genre_id>/')
 def movieMenu(genre_id):
+	if 'username' not in login_session:
+		return redirect('/login')
 	genres = session.query(Genres).filter_by(id=genre_id).one()
 	movies = session.query(Movies).filter_by(genre_id = genre_id)
 	return render_template('movies.html', genre_id=genre_id, genres=genres, movies=movies)
@@ -207,6 +209,8 @@ def movieMenu(genre_id):
 #Create a route for movieItem function
 @app.route('/catalog/movies/item/<int:genre_id>/<int:movie_id>/')
 def movieItem(genre_id, movie_id):
+	if 'username' not in login_session:
+		return redirect('/login')
 	genres = session.query(Genres).filter_by(id=genre_id).one()
 	# movies = session.query(Movies).filter_by(genre_id = genre_id)
 	movies = session.query(Movies).filter_by(id = movie_id).one()
@@ -216,6 +220,8 @@ def movieItem(genre_id, movie_id):
 #Create a route for newMovieItem function
 @app.route('/catalog/new/<int:genre_id>/', methods=['GET', 'POST'])
 def newMovieItem(genre_id):
+	if 'username' not in login_session:
+		return redirect('/login')
 	if request.method == 'POST':
 		newMovie = Movies(title = request.form['title'], description = request.form['description'], genre_id = genre_id)
 		session.add(newMovie)
@@ -229,6 +235,8 @@ def newMovieItem(genre_id):
 #Create a route for editMovieItem function
 @app.route('/catalog/edit/<int:genre_id>/<int:movie_id>/', methods=['GET', 'POST'])
 def editMovieItem(genre_id, movie_id):
+	if 'username' not in login_session:
+		return redirect('/login')
 	editedItem = session.query(Movies).filter_by(id = movie_id).one()
 	if request.method == 'POST':
 		if request.form['title']:
@@ -247,6 +255,8 @@ def editMovieItem(genre_id, movie_id):
 #Create a route for deleteMovieItem function
 @app.route('/catalog/delete/<int:genre_id>/<int:movie_id>/', methods=['GET', 'POST'])
 def deleteMovieItem(genre_id, movie_id):
+	if 'username' not in login_session:
+		return redirect('/login')
 	itemToDelete = session.query(Movies).filter_by(id = movie_id).one()
 	if request.method == 'POST':
 		session.delete(itemToDelete)
