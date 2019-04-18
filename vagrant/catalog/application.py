@@ -63,7 +63,8 @@ def movieMenu(genre_id):
 @app.route('/catalog/movies/item/<int:genre_id>/<int:movie_id>/')
 def movieItem(genre_id, movie_id):
 	genres = session.query(Genres).filter_by(id=genre_id).one()
-	movies = session.query(Movies).filter_by(genre_id = genre_id)
+	# movies = session.query(Movies).filter_by(genre_id = genre_id)
+	movies = session.query(Movies).filter_by(id = movie_id).one()
 	return render_template('item.html', genre_id=genre_id, genres=genres, movies=movies)
 
 
@@ -74,8 +75,8 @@ def newMovieItem(genre_id):
 		newMovie = Movies(title = request.form['title'], description = request.form['description'], genre_id = genre_id)
 		session.add(newMovie)
 		session.commit()
-		flash("new movie created!")
-		return redirect(url_for('genreMenu', genre_id = genre_id))
+		flash("!!!new movie created!!!")
+		return redirect(url_for('movieMenu', genre_id = genre_id))
 	else:
 		return render_template('newmovieitem.html', genre_id = genre_id)
 
@@ -91,8 +92,8 @@ def editMovieItem(genre_id, movie_id):
 			editedItem.description = request.form['description']
 		session.add(editedItem)
 		session.commit()
-		flash("movie has been edited!")
-		return redirect(url_for('genreMenu', genre_id = genre_id))
+		flash("!!!movie has been edited!!!")
+		return redirect(url_for('movieMenu', genre_id = genre_id))
 	else:
 		return render_template('editmovieitem.html', genre_id = genre_id
 			, movie_id = movie_id, i = editedItem)
@@ -105,8 +106,8 @@ def deleteMovieItem(genre_id, movie_id):
 	if request.method == 'POST':
 		session.delete(itemToDelete)
 		session.commit()
-		flash("movie has been deleted!")
-		return redirect(url_for('genreMenu', genre_id = genre_id))
+		flash("!!!movie has been deleted!!!")
+		return redirect(url_for('movieMenu', genre_id = genre_id))
 	else:
 		return render_template('deletemovieitem.html', i = itemToDelete)
 

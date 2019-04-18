@@ -11,11 +11,11 @@
 	</head>
 
 	<body>
-		<h1>Are you sure you want to delete {{ i.title }}</h1>
+		<h1>Are you sure you want to delete <span>{{ i.title }}</span>?</h1>
 		<form action="{{ url_for('deleteMovieItem', genre_id=i.genre_id, movie_id=i.id )}}" method = 'POST'>
 
 		<input type = 'submit' value='Delete'>
-		<a href = '{{ url_for('genreMenu', movie_id=i.id, genre_id=i.genre_id) }}'>Cancel</a>
+		<button><a class='button' href = '{{ url_for('movieMenu', movie_id=i.id, genre_id=i.genre_id) }}'>Cancel</a></button>
 	</form>
 	</body>
 </html>
