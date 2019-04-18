@@ -71,7 +71,7 @@ def movieItem(genre_id, movie_id):
 
 
 #Create a route for newMovieItem function
-@app.route('/catalog/<int:genre_id>/new/', methods=['GET', 'POST'])
+@app.route('/catalog/new/<int:genre_id>/', methods=['GET', 'POST'])
 def newMovieItem(genre_id):
 	if request.method == 'POST':
 		newMovie = Movies(title = request.form['title'], description = request.form['description'], genre_id = genre_id)
@@ -84,7 +84,7 @@ def newMovieItem(genre_id):
 
 
 #Create a route for editMovieItem function
-@app.route('/catalog/<int:genre_id>/<int:movie_id>/edit/', methods=['GET', 'POST'])
+@app.route('/catalog/edit/<int:genre_id>/<int:movie_id>/', methods=['GET', 'POST'])
 def editMovieItem(genre_id, movie_id):
 	editedItem = session.query(Movies).filter_by(id = movie_id).one()
 	if request.method == 'POST':
@@ -102,7 +102,7 @@ def editMovieItem(genre_id, movie_id):
 
 
 #Create a route for deleteMovieItem function
-@app.route('/catalog/<int:genre_id>/<int:movie_id>/delete/', methods=['GET', 'POST'])
+@app.route('/catalog/delete/<int:genre_id>/<int:movie_id>/', methods=['GET', 'POST'])
 def deleteMovieItem(genre_id, movie_id):
 	itemToDelete = session.query(Movies).filter_by(id = movie_id).one()
 	if request.method == 'POST':
