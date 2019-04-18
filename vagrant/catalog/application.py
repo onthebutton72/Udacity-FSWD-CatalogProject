@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
+from sqlalchemy import desc
 from flask_marshmallow import Marshmallow #pip install flask-marshmallow, pip install marshmallow-sqlalchemy
 
 app = Flask(__name__)
@@ -27,7 +28,8 @@ class MovieSchema(ma.ModelSchema):
 @app.route('/catalog/')
 def mainMenu():
 	genres = session.query(Genres)
-	return render_template('catalog.html', genres=genres)
+	movies = session.query(Movies).order_by(desc(Movies.id)).limit(3)
+	return render_template('catalog.html', genres=genres, movies=movies)
 
 
 #Create a route for oneGenreJSON function

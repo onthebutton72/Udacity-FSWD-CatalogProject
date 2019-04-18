@@ -31,7 +31,11 @@
 			<div class='column right'>
 				<h2>Latest Movies</h2>
 				<ul>
-					<li></li>
+					{% for i in movies %}
+					<li>
+						{{ i.title }}
+					</li>
+					{% endfor %}
 				</ul>
 			</div>
 		</div>

@@ -31,6 +31,9 @@
 				{% endwith %} -->
 				<p class='title'>
 					{{ movies.title }}
+				</p>
+				<p>
+					{{ movies.description }}
 					</br>
 					</br>
 					<button><a class='button' href='{{url_for('editMovieItem', genre_id=genres.id, movie_id=movies.id) }}' >Edit</a></button>
