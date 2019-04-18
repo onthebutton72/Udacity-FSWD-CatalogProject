@@ -12,32 +12,32 @@
 
 	<body>
 		<div class='header'>
-			<h1>{{ genres.name }}</h1>
+			<h1>Movie</h1>
 		</div>
 		<div class='topnav'>
 			<a href = '{{url_for('mainMenu') }}'>Home</a>
 		</div>
+		<div class='row'>
+			<div class='column full'>
+				<h2>Title</h2>
+<!-- 				{% with messages = get_flashed_messages() %}
+					{% if messages %}
+						<ul>
+							{% for message in messages %}
+							<li><strong>{{ message }}</strong></li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+				{% endwith %} -->
+				<p class='title'>
+					{{ movies.title }}
+					</br>
+					</br>
+					<button><a class='button' href='{{url_for('editMovieItem', genre_id=genres.id, movie_id=movies.id) }}' >Edit</a></button>
+					<button><a class = 'button' href='{{url_for('deleteMovieItem', genre_id=genres.id, movie_id=movies.id) }}' >Delete</a></button>
+				</p>					
 
-		{% with messages = get_flashed_messages() %}
-			{% if messages %}
-				<ul>
-					{% for message in messages %}
-						<li><strong>{{ message }}</strong></li>
-					{% endfor %}
-				</ul>
-			{% endif %}
-		{% endwith %}
-		<a href = '{{url_for('newMovieItem', genre_id= genres.id) }}'>Create New Movie</a>
-		</br>
-		</br>
-		{% for i in movies %}
-		{{ i.title }}
-		</br>
-		<a href='{{url_for('editMovieItem', genre_id=genres.id, movie_id=i.id) }}' >Edit</a>
-		</br>
-		<a href='{{url_for('deleteMovieItem', genre_id=genres.id, movie_id=i.id) }}' >Delete</a>
-		</br>
-		</br>
-		{% endfor %}
+			</div>
+		</div>
 	</body>
 </html>

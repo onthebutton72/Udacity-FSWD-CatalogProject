@@ -6,6 +6,10 @@ h2 {
 	font-size: 95%;
 }
 
+span {
+  color: #ff4924;
+}
+
 ul {
 	list-style-type: none;
 	padding: 0px;
@@ -13,6 +17,10 @@ ul {
 
 a {
 	font-size: 95%;
+}
+
+.flash {
+  color: red;
 }
 
 /* Style the header */
@@ -66,6 +74,14 @@ a {
 	padding-right: 2%;
 }
 
+/* Left column */
+.column.full {
+  width: 100%;
+  padding-left: 2%;
+  padding-right: 1%;
+
+}
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -77,26 +93,38 @@ a.genre:link, a.movie:link {
   /* Applies to all unvisited links */
   text-decoration:  none;
   color: #ff4924;
-  } 
+} 
+
 a.genre:visited, a.movie:visited {
   /* Applies to all visited links */
   text-decoration:  none;
   color: #ff4924;
-  } 
+} 
+
 a.genre:hover, a.movie:hover {
   /* Applies to links under the pointer */
   text-decoration:  none;
   font-weight:      bold;
   background-color: #ff4924;
   color:            black;
-  } 
+} 
+
 a.genre:active, a.movie:active {
   /* Applies to activated links */
   text-decoration:  none;
   font-weight:      bold;
   background-color: black;
   color: white;
-  } 
+} 
+
+a.button {
+  text-decoration:  none;
+  color: black;
+}
+
+.title {
+  color: #ff4924;
+}
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {

@@ -11,15 +11,21 @@
 	</head>
 
 	<body>
-		<h1>New Movie</h1>
-		<form action="{{ url_for('newMovieItem', genre_id=genre_id )}}" method = 'POST'>
-
-		<p>Title:</p>
-		<input type = 'text' size='30' name='title'>
-
-		<p>Description:</p>
-		<input type = 'text' size='30' name='description'>
-		<input type = 'submit' value='Create'>
-	</form>
+		<div class='header'>
+			<h1>New Movie</h1>
+		</div>
+		<div class='topnav'>
+			<a href = '{{url_for('mainMenu') }}'>Home</a>
+		</div>
+		<div class='row'>
+			<div class='column full'>
+				<form action="{{ url_for('newMovieItem', genre_id=genre_id )}}" method = 'POST'>
+					<p>Title:</p>
+					<input type = 'text' size='30' name='title'>
+					<p>Description:</p>
+					<input type = 'text' size='30' name='description'>
+					<input type = 'submit' value='Create'>
+					<button><a class='button' href = '{{ url_for('movieMenu', genre_id = genre_id) }}'>Cancel</a></button>
+			</form>
 	</body>
 </html>

@@ -11,17 +11,24 @@
 	</head>
 
 	<body>
-		<h1>Edit Movie</h1>
-		<form action="{{ url_for('editMovieItem', genre_id=genre_id, movie_id=i.id )}}" method = 'POST'>
+		<div class='header'>
+			<h1>Edit Movie</h1>
+		</div>
+		<div class='topnav'>
+			<a href = '{{url_for('mainMenu') }}'>Home</a>
+		</div>
+		<div>
+			<form action="{{ url_for('editMovieItem', genre_id=genre_id, movie_id=i.id )}}" method = 'POST'>
+				<p>Title:</p>
+				<input type = 'text' size='30' name='title' placeholder= '{{ i.title }}'>
 
-		<p>Title:</p>
-		<input type = 'text' size='30' name='title' placeholder= '{{ i.title }}'>
-
-		<p>Description:</p>
-		<input type = 'text' size='100' name='description' placeholder='{{ i.description }}'>
-		<input type = 'submit' value='Edit'>
-
-		<a href = '{{ url_for('genreMenu', genre_id = i.genre_id) }}'>Cancel</a>
-	</form>
+				<p>Description:</p>
+				<input type = 'text' size='50' name='description' placeholder='{{ i.description }}'>
+				</br>
+				</br>
+				<input type = 'submit' value='Edit'>
+				<button><a class='button' href = '{{ url_for('movieMenu', genre_id = i.genre_id) }}'>Cancel</a></button>
+			</form>
+		</div>
 	</body>
 </html>
