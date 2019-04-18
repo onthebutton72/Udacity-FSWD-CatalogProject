@@ -16,6 +16,8 @@
 		</div>
 		<div class='topnav'>
 			<a href = '{{url_for('mainMenu') }}'>Home</a>
+			<a href = "#">Login</a>
+			<a href = "#">Logout</a>
 		</div>
 		<div>
 			<form action="{{ url_for('editMovieItem', genre_id=genre_id, movie_id=i.id )}}" method = 'POST'>
