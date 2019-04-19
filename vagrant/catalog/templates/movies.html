@@ -21,6 +21,15 @@
 			<a href = "#">Logout</a>
 		</div>
 		<div class='row'>
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+				<ul>
+					{% for message in messages %}
+						<li class='flash'><strong>{{ message }}</strong></li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+			{% endwith %}
 			<div class='column full'>
 				<h2>Movies</h2>
 				<ul>
@@ -29,15 +38,6 @@
 					</br>
 					{% endfor %}
 				</ul>
-				{% with messages = get_flashed_messages() %}
-					{% if messages %}
-					<ul>
-						{% for message in messages %}
-							<li class='flash'><strong>{{ message }}</strong></li>
-						{% endfor %}
-					</ul>
-					{% endif %}
-				{% endwith %}
 			</div>
 		</div>
 	</body>

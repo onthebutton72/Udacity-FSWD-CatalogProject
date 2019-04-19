@@ -39,14 +39,6 @@ class MovieSchema(ma.ModelSchema):
 		model = Movies
 
 
-#Create a state token to prevent request forgery.
-#Store it in the session for later validation.
-@app.route('/login')
-def showLogin():
-	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in xrange(32))
-	login_session['state'] = state
-	return render_template('login.html', STATE=state)
-
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
     # Validate state token
@@ -126,7 +118,7 @@ def gconnect():
     output += '<img src="'
     output += login_session['picture']
     output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
-    flash("you are now logged in as %s" % login_session['username'])
+    # flash("you are now logged in as %s" % login_session['username'])
     print "done!"
     return output
 
@@ -172,7 +164,9 @@ def gdisconnect():
 def mainMenu():
 	genres = session.query(Genres)
 	movies = session.query(Movies).order_by(desc(Movies.id)).limit(3)
-	return render_template('catalog.html', genres=genres, movies=movies)
+	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in xrange(32))
+	login_session['state'] = state
+	return render_template('catalog.html', genres=genres, movies=movies, STATE=state)
 
 
 #Create a route for oneGenreJSON function
@@ -200,7 +194,8 @@ def allMoviesJSON():
 @app.route('/catalog/movies/<int:genre_id>/')
 def movieMenu(genre_id):
 	if 'username' not in login_session:
-		return redirect('/login')
+		flash("!!!Please log in to view movies!!!")
+		return redirect('/catalog')
 	genres = session.query(Genres).filter_by(id=genre_id).one()
 	movies = session.query(Movies).filter_by(genre_id = genre_id)
 	return render_template('movies.html', genre_id=genre_id, genres=genres, movies=movies)

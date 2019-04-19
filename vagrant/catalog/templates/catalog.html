@@ -9,6 +9,17 @@
 		<meta name="author" content="Jamie Martinez">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type=text/css href="{{ url_for('static', filename='styles.css') }}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+		<script>
+			function start() {
+				gapi.load('auth2', function() {
+					auth2 = gapi.auth2.init({
+						client_id: '685120278453-9ssh1lbud2fcdkj7rfs5e3h065rh2q8k.apps.googleusercontent.com'
+					});
+				});
+			}
+	    </script>
 	</head>
 
 	<body>
@@ -17,10 +28,20 @@
 		</div>
 		<div class='topnav'>
 			<a href = '{{url_for('mainMenu') }}'>Home</a>
-			<a href = "#">Login</a>
+			<a id="signinButton">Google Signin</a>
 			<a href = "#">Logout</a>
 		</div>
 		<div class='row'>
+			<div id="result"></div>
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					<ul>
+						{% for message in messages %}
+						<li class='flash'><strong>{{ message }}</strong></li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+			{% endwith %}
 			<div class='column left'>
 				<h2>Genre</h2>
 				<ul>
@@ -42,5 +63,33 @@
 				</ul>
 			</div>
 		</div>
+		<script>
+			$('#signinButton').click(function() {
+				function signInCallback(authResult){
+					if (authResult['code']){
+						$('#signinButton').attr('style', 'display: none');
+						$.ajax({
+							type: 'POST',
+							url: '/gconnect?state={{STATE}}',
+							headers: {
+								'X-Requested-With': 'XMLHttpRequest'
+							},
+							contentType: 'application/octet-stream; charset=utf-8',
+							success:function(result){
+								$('#result').html('Login Successful!')
+								setTimeout(function() {
+									window.location.href = "/";
+								}, 2000);
+							},
+							processData:false,
+							data:authResult['code']
+						});
+					} else{
+						$('#result').html('Failed to make a server-side call. Check your configuration and console.');
+					}
+				}
+				auth2.grantOfflineAccess().then(signInCallback);
+			});
+		</script>
 	</body>
 </html>
