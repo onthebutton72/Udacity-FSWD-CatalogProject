@@ -28,8 +28,11 @@
 		</div>
 		<div class='topnav'>
 			<a href = '{{url_for('mainMenu') }}'>Home</a>
-			<a id="signinButton">Google Signin</a>
-			<a href = "#">Logout</a>
+			<a href = '{{url_for('allMoviesJSON') }}'>API</a>
+			<div class='topnav-right'>
+				<button id="signinButton">Google Login</button>
+				<button class="signoutButton" type="button" onclick="signoutButton()">Logout</button>
+			</div>
 		</div>
 		<div class='row'>
 			<div id="result"></div>
@@ -64,10 +67,11 @@
 			</div>
 		</div>
 		<script>
+			// Sign in button script
 			$('#signinButton').click(function() {
 				function signInCallback(authResult){
 					if (authResult['code']){
-						$('#signinButton').attr('style', 'display: none');
+						// $('#signinButton').attr('style', 'display: none');
 						$.ajax({
 							type: 'POST',
 							url: '/gconnect?state={{STATE}}',
@@ -90,6 +94,10 @@
 				}
 				auth2.grantOfflineAccess().then(signInCallback);
 			});
+			// Sign out button script
+			function signoutButton() {
+				window.location.href = '{{ url_for('gdisconnect') }}'
+			}
 		</script>
 	</body>
 </html>

@@ -18,7 +18,10 @@
 		<div class='topnav'>
 			<a href = '{{url_for('mainMenu') }}'>Home</a>
 			<a href = '{{url_for('newMovieItem', genre_id= genres.id) }}'>Create New Movie</a>
-			<a href = "#">Logout</a>
+			<a href = '{{url_for('oneGenreJSON', genre_id= genres.id) }}'>API</a>
+			<div class='topnav-logout'>
+				<button class="signoutButton" type="button" onclick="signoutButton()">Logout</button>
+			</div>
 		</div>
 		<div class='row'>
 			{% with messages = get_flashed_messages() %}
@@ -40,5 +43,11 @@
 				</ul>
 			</div>
 		</div>
+		<script>
+			// Sign out button script
+			function signoutButton() {
+				window.location.href = '{{ url_for('gdisconnect') }}'
+			}
+		</script>
 	</body>
 </html>

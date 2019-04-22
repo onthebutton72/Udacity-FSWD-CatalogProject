@@ -52,6 +52,18 @@ a {
   color: black;
 }
 
+/* Align logon links to the right on the nav bar */
+.topnav-right {
+  float: right;
+  width: 25%;
+}
+
+/* Align logoff link to the right on the nav bar */
+.topnav-logout {
+  float: right;
+  width: 15%;
+}
+
 /* Create three equal columns that floats next to each other */
 .column {
   float: left;
@@ -124,6 +136,17 @@ a.button {
 
 .title {
   color: #ff4924;
+}
+
+#signinButton {
+margin-top: 12px;
+margin-right: 4px;
+}
+
+.signoutButton {
+margin-top: 12px;
+margin-bottom: 8px;
+margin-right: 2px;
 }
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */

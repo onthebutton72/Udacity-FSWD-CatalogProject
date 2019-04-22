@@ -17,7 +17,9 @@
 		</div>
 		<div class='topnav'>
 			<a href = '{{url_for('mainMenu') }}'>Home</a>
-			<a href = "#">Logout</a>
+			<div class='topnav-logout'>
+				<button class="signoutButton" type="button" onclick="signoutButton()">Logout</button>
+			</div>
 		</div>
 		<div>
 			<form action="{{ url_for('editMovieItem', genre_id=genre_id, movie_id=i.id )}}" method = 'POST'>
@@ -32,5 +34,11 @@
 				<button><a class='button' href = '{{ url_for('movieMenu', genre_id = i.genre_id) }}'>Cancel</a></button>
 			</form>
 		</div>
+		<script>
+			// Sign out button script
+			function signoutButton() {
+				window.location.href = '{{ url_for('gdisconnect') }}'
+			}
+		</script>
 	</body>
 </html>

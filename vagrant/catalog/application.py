@@ -1,17 +1,22 @@
+import requests
+import random, string
+import httplib2
+import json
+
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask import session as login_session
-import random, string
+from flask_marshmallow import Marshmallow #pip install flask-marshmallow, pip install marshmallow-sqlalchemy
+from flask import make_response
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy import desc
-from flask_marshmallow import Marshmallow #pip install flask-marshmallow, pip install marshmallow-sqlalchemy
+
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
-import httplib2
-import json
-from flask import make_response
-import requests
+
+
 
 
 app = Flask(__name__)
@@ -112,14 +117,6 @@ def gconnect():
     login_session['email'] = data['email']
 
     output = ''
-    output += '<h1>Welcome, '
-    output += login_session['username']
-    output += '!</h1>'
-    output += '<img src="'
-    output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
-    # flash("you are now logged in as %s" % login_session['username'])
-    print "done!"
     return output
 
 
