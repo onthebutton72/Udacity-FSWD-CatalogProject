@@ -30,7 +30,7 @@ a {
   text-align: center;
 }
 
-/* Style the top navigation bar */
+/* Style the topnav bar */
 .topnav {
   overflow: hidden;
   background-color: #333;
@@ -101,6 +101,7 @@ a {
   clear: both;
 }
 
+/* Style for links */
 a.genre:link, a.movie:link {
   /* Applies to all unvisited links */
   text-decoration:  none;
@@ -138,18 +139,34 @@ a.button {
   color: #ff4924;
 }
 
+/* Style the log on button */
 #signinButton {
-margin-top: 12px;
-margin-right: 4px;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-right: 4px;
 }
 
+#signinButton:hover {
+  margin-top: 12px;
+  margin-right: 4px;
+  color: #ff4924;
+}
+
+/* Style the logoff button */
 .signoutButton {
-margin-top: 12px;
-margin-bottom: 8px;
-margin-right: 2px;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  margin-right: 2px;
 }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+.signoutButton:hover {
+  margin-top: 12px;
+  margin-right: 4px;
+  color: #ff4924;
+}
+
+/* Responsive layout */
 @media screen and (max-width: 600px) {
   .column.left, .column.right {
     width: 100%;
