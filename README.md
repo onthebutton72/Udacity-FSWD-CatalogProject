@@ -28,10 +28,11 @@ This is the catalog project for the Udacity Full Stack Web Developer Nanodegree.
 
 * Clone or download the repository: https://github.com/onthebutton72/fswd-catalog.git
 * Change directory to the cloned/downloaded folder 
-* Change directory to the vagrant/catalog/ folder: ```cd vagrant/catalog```
+* Change directory to the vagrant/catalog folder: ```cd vagrant/catalog```
 * Install [Virtualbox](https://www.virtualbox.org/)
 * Install Vagrant VM: ```vagrant up```
 * SSH to the Vagrant VM: ```vagrant ssh```
+* Change directory to the vagrant/catalog folder: ```cd vagrant/catalog```
 * Install Marshmallow: ```pip install flask-marshmallow marshmallow-sqlalchemy```
 * Run the database_setup.py file: ```python database_setup.py```
 * Run the application.py file: ```python application.py```
