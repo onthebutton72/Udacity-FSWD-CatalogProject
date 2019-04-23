@@ -27,7 +27,7 @@ This is the catalog project for the Udacity Full Stack Web Developer Nanodegree.
 ## Instructions
 
 * Clone or download the repository: https://github.com/onthebutton72/fswd-catalog.git
-* Change directory to the cloned/downloaded folder
+* Change directory to the cloned/downloaded folder then into the /vagrant/catalog/ folder
 * Install Vagrant and Virtualbox
 * Launch Vagrant VM (vagrant up)
 * SSH to the Vagrant VM (vagrant ssh)
