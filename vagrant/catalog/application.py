@@ -44,6 +44,7 @@ class MovieSchema(ma.ModelSchema):
     class Meta:
         model = Movies
 
+
 # Create a route for gconnect function
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
