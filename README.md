@@ -12,11 +12,11 @@ This is the catalog project for the Udacity Full Stack Web Developer Nanodegree.
 
 ## Contents
 
-*  All html and python files are located in the /templates folder
+*  All html and python files are located in the /vagrant/catalog/templates folder
     - HTML: catalog.html, deletemovieitem.html, editmovieitem.html, item.html, movies.html, newmovieitem.html
     - Python: database_setup.py, application.py
 
-*  CSS files are located in the /static folder
+*  CSS files are located in the /vagrant/catalog//static folder
     - CSS: styles.css
 
 ## Attribution
