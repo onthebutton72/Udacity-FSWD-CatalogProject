@@ -42,7 +42,7 @@ This is the catalog project for the Udacity Full Stack Web Developer Nanodegree.
 
 ## Dependencies
 
-* This project was created with the Flask micro framework [Flask](http://flask.pocoo.org/)
+* This project was created with the [Flask](http://flask.pocoo.org/) micro framework 
 * Browser: Best viewed in Google Chrome (javascript enabled)
 * Google+ API
 
